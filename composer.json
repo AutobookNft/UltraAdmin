@@ -1,0 +1,21 @@
+{
+    "name": "fabiocherici/ultra-admin",
+    "description": "UltraAdmin è un pannello di amministrazione semplice e leggero per gestire l'intero ecosistema delle librerie Ultra. Facilita la gestione delle configurazioni, delle versioni e delle dipendenze delle librerie.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Fabio\\UltraAdmin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "fabio cherici",
+            "email": "fabiocherici@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.1"
+    }
+}
