@@ -1,6 +1,6 @@
 # UltraAdmin
 
-**UltraAdmin** è un pannello di amministrazione leggero e modulare sviluppato per la gestione e l'orchestrazione delle librerie della galassia Ultra. Progettato per facilitare il controllo e la configurazione delle dipendenze, UltraAdmin è uno strumento concepito per semplificare la gestione di tutte le librerie `Ultra`, con l'obiettivo di offrire un ambiente centralizzato e altamente efficiente per l'amministrazione di progetti complessi.
+**UltraAdmin** (versione 0.0.1) è attualmente in fase di sviluppo. Questo pannello di amministrazione leggero e modulare è stato creato per la gestione e l'orchestrazione delle librerie della galassia Ultra. Progettato per facilitare il controllo e la configurazione delle dipendenze, UltraAdmin è uno strumento concepito per semplificare la gestione di tutte le librerie `Ultra`, con l'obiettivo di offrire un ambiente centralizzato e altamente efficiente per l'amministrazione di progetti complessi.
 
 ## Caratteristiche Principali
 
@@ -54,20 +54,4 @@ L'obiettivo è quello di creare un'esperienza di amministrazione semplice, intui
 UltraAdmin fornisce una **interfaccia web** attraverso la quale è possibile gestire tutte le librerie Ultra. Dopo l'installazione, puoi accedere alla dashboard principale tramite il browser all'indirizzo configurato (ad esempio, `http://localhost:8000`).
 
 Tramite la dashboard, è possibile:
-- **Visualizzare e modificare** le configurazioni di ogni libreria.
-- **Aggiungere nuove librerie** al sistema.
-- **Monitorare lo stato** delle librerie e verificare le loro versioni e dipendenze.
-
-## Contribuire
-
-Le contribuzioni sono benvenute! Se vuoi migliorare UltraAdmin o aggiungere nuove funzionalità, sentiti libero di creare una **pull request** su GitHub. Assicurati di seguire gli standard di codice definiti e di includere i test necessari.
-
-## Licenza
-
-UltraAdmin è open-source, rilasciato sotto licenza **MIT**. Sentiti libero di utilizzarlo, modificarlo e distribuirlo.
-
----
-
-UltraAdmin è pensato per essere il cuore dell'amministrazione delle tue librerie Ultra, garantendo efficienza e sicurezza a ogni passo del tuo sviluppo. Se hai domande, apri un **issue** su GitHub o consulta la documentazione dettagliata inclusa nel progetto.
-
-
+- **Visualizzare e modificare** le configurazioni di ogni librer
