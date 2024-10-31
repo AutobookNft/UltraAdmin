@@ -1,30 +1,36 @@
 # UltraAdmin
 
-**UltraAdmin** (versione 0.0.1) è attualmente in fase di sviluppo. Questo pannello di amministrazione leggero e modulare è stato creato per la gestione e l'orchestrazione delle librerie della galassia Ultra. Progettato per facilitare il controllo e la configurazione delle dipendenze, UltraAdmin è uno strumento concepito per semplificare la gestione di tutte le librerie `Ultra`, con l'obiettivo di offrire un ambiente centralizzato e altamente efficiente per l'amministrazione di progetti complessi.
+## Disclaimer
+UltraAdmin è attualmente in fase di sviluppo e ha uno scopo principalmente didattico. Questa applicazione è stata progettata per approfondire e consolidare la conoscenza di Laravel, delle sue best practices e dei principi avanzati di sviluppo software, come l’iniezione delle dipendenze, la gestione centralizzata delle configurazioni e l’architettura basata su kernel. UltraAdmin non è ancora pronto per un utilizzo in produzione, e tutte le funzionalità implementate sono pensate per l'apprendimento e la sperimentazione in un ambiente di sviluppo.
+
+
+**UltraAdmin** (versione 0.0.2) è un pannello di amministrazione modulare e leggero, attualmente in fase di sviluppo, creato per l'orchestrazione delle librerie `Ultra`. Progettato per semplificare la configurazione e il controllo delle dipendenze, UltraAdmin offre un ambiente centralizzato per la gestione delle librerie `Ultra` con un’interfaccia intuitiva, ottimizzata per progetti complessi e ambienti di produzione.
 
 ## Caratteristiche Principali
 
-- **Gestione delle Librerie**: Consente di visualizzare, aggiungere, modificare e rimuovere le librerie Ultra all'interno di un'interfaccia intuitiva e semplice. Ogni libreria può essere gestita nei suoi dettagli, inclusi i suoi metadati, le versioni e le dipendenze.
+- **Architettura Basata su Kernel**: La gestione dell’applicazione avviene tramite un kernel centralizzato, che registra e avvia i vari service provider, semplificando la struttura e migliorando l’efficienza e modularità del codice.
 
-- **Configurazione Centralizzata**: Utilizza `UltraConfigManager` per caricare e modificare le configurazioni di tutte le librerie in un'unica posizione, riducendo al minimo i conflitti e semplificando la gestione delle variabili critiche.
+- **Gestione delle Librerie**: La dashboard di UltraAdmin consente di visualizzare, aggiungere, modificare e rimuovere le librerie Ultra. Ogni libreria può essere amministrata con i dettagli specifici, inclusi metadati, versioni e dipendenze.
 
-- **Autowiring e Dependency Injection**: UltraAdmin è dotato di un **Service Container** che supporta l'‘autowiring’, facilitando l'iniezione automatica delle dipendenze e mantenendo il codice modulare e manutenibile.
+- **Configurazione Centralizzata**: Con `UltraConfigManager`, è possibile caricare e modificare le configurazioni di tutte le librerie in un’unica posizione, semplificando la gestione di variabili critiche e riducendo i conflitti.
 
-- **Log Avanzato con UltraLogManager**: Integra `UltraLogManager` per tracciare tutte le attività rilevanti, consentendo di monitorare e analizzare il comportamento del sistema. UltraAdmin rende possibile anche visualizzare i log direttamente nel pannello per identificare rapidamente errori e ottimizzazioni.
+- **Service Container e Dependency Injection**: UltraAdmin sfrutta un **Service Container** con supporto per l’autowiring e l’iniezione delle dipendenze, mantenendo il codice modulare e altamente manutenibile.
 
-- **Supporto alle Versioni e alle Dipendenze**: UltraAdmin ti permette di gestire facilmente le versioni (`major`, `minor`, `patch`) di ogni libreria e di monitorare le dipendenze esistenti tra di esse. Il sistema è progettato per garantire un controllo capillare degli aggiornamenti e della compatibilità tra le diverse componenti.
+- **Sistema di Logging Avanzato**: Grazie a `UltraLogManager`, tutte le attività rilevanti sono monitorabili tramite log. UltraAdmin consente la visualizzazione diretta dei log nella dashboard per una diagnostica immediata e una gestione delle ottimizzazioni.
 
-- **Automazione della Pubblicazione**: Con uno script di automazione, UltraAdmin facilita la pubblicazione delle nuove versioni delle librerie su Packagist, minimizzando gli errori e rendendo il processo rapido ed efficace.
+- **Gestione Versioni e Dipendenze**: UltraAdmin supporta la gestione delle versioni (`major`, `minor`, `patch`) e delle dipendenze tra librerie, garantendo compatibilità e controllo sugli aggiornamenti di ogni componente.
 
-- **Pannello di Monitoraggio**: Include una dashboard completa per la visualizzazione di metriche, stato delle librerie, e gestione degli utenti. Tutte le librerie con prefisso `ultra_fc_` vengono automaticamente riconosciute e gestite dal sistema.
+- **Automazione della Pubblicazione**: Con uno script dedicato, UltraAdmin facilita la pubblicazione delle nuove versioni delle librerie su Packagist, riducendo errori e accelerando il processo.
 
-- **Sicurezza**: Le operazioni critiche sono protette con autenticazione e autorizzazione per evitare accessi non autorizzati e garantire che solo utenti abilitati possano modificare le configurazioni o pubblicare nuove versioni.
+- **Interfaccia di Monitoraggio**: La dashboard mostra metriche, stato delle librerie e gestione utenti. Il sistema rileva automaticamente e gestisce le librerie con prefisso `ultra_fc_`, rendendo l’uso efficiente per la gestione di librerie simili.
+
+- **Sicurezza Potenziata**: Operazioni critiche come la pubblicazione e modifica delle configurazioni sono protette da un sistema di autenticazione e autorizzazione avanzato, garantendo l’accesso solo agli utenti abilitati.
 
 ## Perché UltraAdmin?
 
-UltraAdmin è nato dalla necessità di avere un sistema di amministrazione che non solo aiutasse a gestire le librerie Ultra in modo centralizzato, ma che fosse anche estremamente sicuro, flessibile, e conforme agli standard di eccellenza del settore. Ogni libreria Ultra è progettata per rappresentare la **massima eccellenza** in termini di sicurezza, eleganza e pulizia del codice, e UltraAdmin è lo strumento per mantenere tutto questo coeso e ben gestito.
+UltraAdmin è progettato per fornire un sistema di amministrazione sicuro, flessibile e conforme agli standard di eccellenza del settore, che semplifica la gestione delle librerie Ultra in modo centralizzato. Ogni libreria Ultra è sinonimo di sicurezza, eleganza e pulizia del codice, e UltraAdmin aiuta a mantenere queste qualità in un ambiente coeso e ben organizzato.
 
-L'obiettivo è quello di creare un'esperienza di amministrazione semplice, intuitiva e potente, che permetta a chi utilizza le librerie Ultra di concentrarsi sullo sviluppo delle proprie applicazioni senza dover perdere tempo in complesse configurazioni manuali.
+L'obiettivo principale è fornire un’esperienza di amministrazione intuitiva e potente che consenta agli utenti di concentrarsi sullo sviluppo delle proprie applicazioni senza dover gestire manualmente complesse configurazioni.
 
 ## Installazione
 
@@ -35,23 +41,34 @@ L'obiettivo è quello di creare un'esperienza di amministrazione semplice, intui
    ```
 
 2. **Installare le dipendenze**:
-   Utilizza Composer per installare le dipendenze del progetto.
+   Usa Composer per installare le dipendenze.
    ```sh
    composer install
    ```
 
 3. **Configurare il file `.env`**:
-   Crea un file `.env` partendo dal file di esempio `.env.example` e configura i parametri come le credenziali del database.
+   Crea un file `.env` partendo dall’esempio `.env.example` e configura i parametri necessari, come le credenziali del database.
 
 4. **Esegui il setup iniziale**:
    ```sh
    php artisan ultraadmin:setup
    ```
-   Questo comando eseguirà i task iniziali come la migrazione del database e la pubblicazione dei file di configurazione.
+   Questo comando esegue i task iniziali, come la migrazione del database e la pubblicazione dei file di configurazione.
 
 ## Utilizzo
 
-UltraAdmin fornisce una **interfaccia web** attraverso la quale è possibile gestire tutte le librerie Ultra. Dopo l'installazione, puoi accedere alla dashboard principale tramite il browser all'indirizzo configurato (ad esempio, `http://localhost:8000`).
+UltraAdmin fornisce una **interfaccia web** per la gestione delle librerie Ultra. Dopo l'installazione, puoi accedere alla dashboard principale tramite il browser (ad esempio, `http://localhost:8000`).
 
-Tramite la dashboard, è possibile:
-- **Visualizzare e modificare** le configurazioni di ogni librer
+Attraverso la dashboard, è possibile:
+- **Visualizzare e modificare** le configurazioni delle librerie
+- **Gestire le versioni** e le dipendenze delle librerie
+- **Monitorare i log e lo stato del sistema**
+- **Automatizzare la pubblicazione** su Packagist
+
+## Note di Rilascio
+
+**Versione 0.0.2**:
+- Introduzione del kernel per la gestione centralizzata dei provider e delle risorse.
+- Nuova homepage con navbar integrata per una navigazione più intuitiva.
+- Miglioramento della modularità con rotte gestite dinamicamente tramite il `RouteServiceProvider`.
+
