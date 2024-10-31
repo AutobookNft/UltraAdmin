@@ -2,7 +2,7 @@
 
 namespace Fabio\UltraAdmin\Models;
 
-use Fabio\UltraAdmin\Utils\EnvLoader;
+use Fabio\UltraAdmin\Framework\Connect;
 use PDO;
 use PDOException;
 
@@ -33,16 +33,20 @@ class Library
     {
         if (self::$connection === null) {
             try {
-                $host = EnvLoader::get('DB_HOST', 'localhost');
-                $dbname = EnvLoader::get('DB_NAME', 'ultra_admin');
-                $username = EnvLoader::get('DB_USER', 'root');
-                $password = EnvLoader::get('DB_PASSWORD', '');
-    
+
+                $host = Connect::get()['host']; 
+                $dbname = Connect::get()['dbname'];
+                $username = Connect::get()['username'];
+                $password = Connect::get()['password'];
+
                 $dsn = "mysql:host=$host;dbname=$dbname";
                 self::$connection = new PDO($dsn, $username, $password);
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
             } catch (PDOException $e) {
+            
                 die('Errore di connessione: ' . $e->getMessage());
+            
             }
         }
         return self::$connection;

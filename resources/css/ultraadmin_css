@@ -1,0 +1,257 @@
+/* Stile di base */
+/* *,
+*::before,
+*::after {
+    box-sizing: border-box;
+} */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1, h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    width: 900px;
+    border-radius: 15px;
+    background-color: #007bff;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu li a:hover {
+    color: #d1e8ff;
+}
+
+/* Hero Section per la home */
+.hero {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 40px auto;
+}
+
+.hero h1 {
+    color: #007bff;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Call-to-Action Button */
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+/* Container per library_handler */
+.container {
+    width: 100%;
+    max-width: 700px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+}
+
+/* Container per library_handler */
+.container_home {
+    width: 100%;
+    max-width: 900px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+}
+
+/* Stile per moduli */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+button {
+    padding: 15px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Tabella per library_handler */
+.table-container {
+    width: 80%;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+}
+
+th {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e6f7ff;
+}
+
+/* Azioni */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+button.action {
+    background-color: #28a745;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+button.action:hover {
+    background-color: #218838;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container,
+    .hero,
+    .table-container {
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    textarea {
+        font-size: 16px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}

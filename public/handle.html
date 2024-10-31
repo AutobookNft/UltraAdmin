@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>UltraAdmin - Gestione Librerie</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/ultraadmin_css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestione Librerie</h1>
+
+        <h2>Aggiungi una nuova libreria</h2>
+        <form action="library_controller.php?action=create" method="post">
+            <input type="text" name="name" placeholder="Nome della libreria" required>
+            <input type="text" name="version" placeholder="Versione" required>
+            <textarea name="description" placeholder="Descrizione"></textarea>
+            <button type="submit">Aggiungi Libreria</button>
+        </form>
+    </div>
+
+    <div class="table-container">
+        <h2>Elenco Librerie</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Versione</th>
+                <th>Descrizione</th>
+                <th>Azioni</th>
+            </tr>
+            <!-- Qui inseriremo dinamicamente tutte le librerie -->
+        </table>
+    </div>
+</body>
+</html>
