@@ -5,8 +5,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Fabio\\UltraAdmin\\": "src/"
-        }
+            "Fabio\\UltraAdmin\\": "src/",
+            "Config\\": "config/"
+        },
+        "files": [
+            "config/LoggerConfig.php"  
+        ]
     },
     "authors": [
         {
@@ -16,6 +20,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=8.1"
+        "php": ">=8.1",
+        "monolog/monolog": "^3.7"
     }
 }

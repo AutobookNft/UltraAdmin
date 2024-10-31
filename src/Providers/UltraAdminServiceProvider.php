@@ -15,9 +15,9 @@ class UltraAdminServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Registrazione del servizio per il LibraryService
-        $this->app->bind(LibraryService::class, function () {
-            return new LibraryService();
-        });
+        // $this->app->bind(LibraryService::class, function () {
+        //     return new LibraryService();
+        // });
 
         // Aggiungere qui altri servizi, come ad esempio ConfigManager o LogManager
     }
@@ -31,7 +31,7 @@ class UltraAdminServiceProvider extends ServiceProvider
     {
         // Avvia eventuali configurazioni, eventi, ecc.
         // Inizializziamo, ad esempio, il LibraryService per impostare alcune configurazioni di base
-        $libraryService = $this->app->resolve(LibraryService::class);
-        $libraryService->initialize();
+        // $libraryService = $this->app->resolve(LibraryService::class);
+        // $libraryService->initialize();
     }
 }

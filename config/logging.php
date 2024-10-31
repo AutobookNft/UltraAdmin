@@ -1,5 +1,7 @@
 <?php
 
+use Fabio\UltraAdmin\Helpers\PathHelper;
+use Fabio\UltraAdmin\Utils\EnvLoader;
 use Fabio\UltraSecureUpload\Logging\CustomizeFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -20,7 +22,7 @@ return [
     |
     */
 
-    'default' => env('ULTRA_SECURE_UPLOAD_LOG_CHANNEL', 'ultra_secure_upload'),
+    'default' => EnvLoader::get('ULTRA_SECURE_UPLOAD_LOG_CHANNEL', "'ultra_secure_upload'"),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,15 +40,17 @@ return [
     */
 
     'channels' => [
-        
+        'single' => [
+            'driver' => 'single',
+            'path' => PathHelper::basePath('logs/ultra_secure_upload.log'),
+            'level' => 'debug',
+        ],
         'error_manager' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/ultra_secure_upload.log'),
+            'path' => PathHelper::basePath('logs/ultra_secure_upload.log'),
             'level' => 'debug',
-            'tap' => [CustomizeFormatter::class], // Mantienilo solo se necessario per formattare i log
-            'days' => 7,  // Numero di giorni per cui conservare i log
+            'days' => 7,
         ],
-        
     ],
 
 ];

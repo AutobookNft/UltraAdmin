@@ -19,6 +19,13 @@ class Container
         ];
     }
 
+    // Aggiungi questo metodo nella classe Container
+    public function get(string $abstract)
+    {
+        return $this->resolve($abstract);
+    }
+
+
     // Metodo per risolvere i servizi
     public function resolve(string $abstract)
     {
@@ -30,8 +37,11 @@ class Container
         // Recupera la definizione del servizio
         $concrete = $this->bindings[$abstract]['concrete'] ?? $abstract;
 
-        // Risolve l'implementazione concreta
-        $object = $this->resolveWithAutowiring($concrete);
+        if ($concrete instanceof \Closure) {
+            $object = $concrete($this);
+        } else {
+            $object = $this->resolveWithAutowiring($concrete);
+        }
 
         // Se è un singleton, salva l'istanza
         if (isset($this->bindings[$abstract]['singleton']) && $this->bindings[$abstract]['singleton']) {
@@ -41,45 +51,34 @@ class Container
         return $object;
     }
 
-    // Metodo per l'autowiring
     protected function resolveWithAutowiring(string $concrete)
     {
-        try {
-            $reflector = new ReflectionClass($concrete);
-        } catch (ReflectionException $e) {
-            throw new \Exception("Cannot resolve {$concrete}: " . $e->getMessage());
-        }
+        // Usa il ReflectionClass per risolvere automaticamente le dipendenze del costruttore
+        $reflector = new \ReflectionClass($concrete);
 
-        // Se la classe non è instanziabile, lancia un'eccezione
         if (!$reflector->isInstantiable()) {
-            throw new \Exception("Class {$concrete} is not instantiable.");
+            throw new \Exception("La classe $concrete non può essere istanziata.");
         }
 
         $constructor = $reflector->getConstructor();
 
-        // Se non esiste un costruttore, istanzia semplicemente la classe
         if (is_null($constructor)) {
             return new $concrete;
         }
 
         $parameters = $constructor->getParameters();
-        $dependencies = [];
-
-        // Risolve tutte le dipendenze del costruttore
-        foreach ($parameters as $parameter) {
-            $dependencyClass = $parameter->getType() && !$parameter->getType()->isBuiltin()
-                ? new ReflectionClass($parameter->getType()->getName())
-                : null;
-
-            if ($dependencyClass === null) {
-                // Nel caso non ci siano informazioni sufficienti per risolvere la dipendenza
-                throw new \Exception("Cannot resolve the dependency {$parameter->getName()} of class {$concrete}");
+        $dependencies = array_map(function ($parameter) {
+            $dependency = $parameter->getClass();
+            if ($dependency === null) {
+                // Se il parametro non è un tipo classe, controlliamo se ha un valore di default
+                if ($parameter->isDefaultValueAvailable()) {
+                    return $parameter->getDefaultValue();
+                }
+                throw new \Exception("Impossibile risolvere la dipendenza {$parameter->name}.");
             }
+            return $this->resolve($dependency->name);
+        }, $parameters);
 
-            $dependencies[] = $this->resolve($dependencyClass->getName());
-        }
-
-        // Restituisce l'istanza della classe richiesta, passando tutte le dipendenze risolte
         return $reflector->newInstanceArgs($dependencies);
     }
 }
