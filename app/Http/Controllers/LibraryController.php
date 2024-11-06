@@ -39,7 +39,6 @@ class LibraryController
     public function home()
     {
         
-        
         $this-> log->info('Caricamento della homepage');
 
         // Renderizza la vista della homepage
@@ -80,11 +79,30 @@ class LibraryController
         // Qui potresti salvare una nuova libreria
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $this->render('edit', ['library' => 'Nome della libreria']);
+        $this->log->info('Dentro edit', ['id' => $id]);
+        
+        try {
+            $library = $this->libraryRepository->getLibraryById($id);
+            
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => true,
+                'data' => $library
+            ]);
+            
+        } catch (Exception $e) {
+            $this->log->error('Errore nel recupero della libreria', ['error' => $e->getMessage()]);
+            http_response_code(500);
+            header('Content-Type: application/json');
+            echo json_encode([
+                'success' => false,
+                'error' => $e->getMessage()
+            ]);
+        }
     }
-
+    
     public function update()
     {
         echo "Aggiorna una libreria esistente.";
