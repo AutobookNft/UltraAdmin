@@ -81,8 +81,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->log->info('Kernel boot started');
     
-        // ... per usi futuri
-        
+       
+//         
         $this->log->info('Kernel boot completed');
     }
 

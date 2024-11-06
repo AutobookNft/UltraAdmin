@@ -38,7 +38,7 @@ class Kernel
     public function dispatch(): void
     {
         $this->log->info('Kernel dispatch started');
-        
+        $this->router->dispatch();
         $this->log->info('Kernel dispatch completed');
     }
 }

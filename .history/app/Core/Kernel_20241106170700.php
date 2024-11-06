@@ -11,7 +11,6 @@ class Kernel
 {
     protected Container $app;
     protected Router $router;
-    protected $log;
 
     public function __construct(Container $app)
     {
@@ -25,11 +24,13 @@ class Kernel
      */
     public function boot(): void
     {
-        $this->log->info('Kernel boot started');
-        
-        // ... per usi futuri
-        
-        $this->log->info('Kernel boot completed');
+        // Inizializza AppServiceProvider, che si occuperà di registrare tutti i provider
+        $appServiceProvider = new AppServiceProvider($this->app);
+        $appServiceProvider->register();
+        $appServiceProvider->boot();
+
+        // Recupera l'istanza di Router dal container e la salva in una proprietà
+        // $this->router = $this->app->get(Router::class);
     }
 
     /**
@@ -38,7 +39,7 @@ class Kernel
     public function dispatch(): void
     {
         $this->log->info('Kernel dispatch started');
-        
+        $this->router->dispatch();
         $this->log->info('Kernel dispatch completed');
     }
 }

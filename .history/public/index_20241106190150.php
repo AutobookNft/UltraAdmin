@@ -25,9 +25,9 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 |--------------------------------------------------------------------------
 */
 
-$kernel = new Kernel($app);
-$kernel->boot();
-$kernel->dispatch();
+// $kernel = new Kernel($app);
+// $kernel->boot();
+// $kernel->dispatch();
 
 // Debug info
 $app->getSingletons(); 

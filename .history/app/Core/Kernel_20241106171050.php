@@ -27,7 +27,13 @@ class Kernel
     {
         $this->log->info('Kernel boot started');
         
-        // ... per usi futuri
+        // Inizializza AppServiceProvider
+        $appServiceProvider = new AppServiceProvider($this->app);
+        $appServiceProvider->register();
+        $appServiceProvider->boot();
+
+        // Decommentata questa riga importante!
+        $this->router = $this->app->get(Router::class);
         
         $this->log->info('Kernel boot completed');
     }
@@ -38,7 +44,7 @@ class Kernel
     public function dispatch(): void
     {
         $this->log->info('Kernel dispatch started');
-        
+        $this->router->dispatch();
         $this->log->info('Kernel dispatch completed');
     }
 }

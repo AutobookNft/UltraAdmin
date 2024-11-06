@@ -11,6 +11,7 @@ use App\Config\LoggerConfig;
 $log = LoggerConfig::getLogger();
 $log->info('Applicazione avviata con successo');
 
+
 /*
 |--------------------------------------------------------------------------
 | Bootstrap The Application

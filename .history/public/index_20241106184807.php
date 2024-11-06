@@ -11,6 +11,13 @@ use App\Config\LoggerConfig;
 $log = LoggerConfig::getLogger();
 $log->info('Applicazione avviata con successo');
 
+// // Inizializza il container
+// $container = new Container();
+// $kernel = new Kernel($container);
+// $kernel->boot();
+// $kernel->dispatch();
+// $container->getSingletons();
+
 /*
 |--------------------------------------------------------------------------
 | Bootstrap The Application

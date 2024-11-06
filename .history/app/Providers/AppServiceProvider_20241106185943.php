@@ -81,7 +81,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->log->info('Kernel boot started');
     
-        // ... per usi futuri
+        // Non serve più né AppServiceProvider né la riga del router
+        // perché tutto è già gestito dai provider
         
         $this->log->info('Kernel boot completed');
     }
