@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Aggiungi stili base per la tabella se necessario */
+.table-modern {
+    @apply min-w-full divide-y divide-gray-200;
+}
+
+.table-modern th {
+    @apply px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+.table-modern td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+}
+
+/* Stili per la navbar */
+.navbar {
+    @apply bg-gray-800 text-white p-4 flex justify-between items-center;
+}
+
+.navbar-brand {
+    @apply text-xl font-bold;
+}
+
+.navbar-menu {
+    @apply flex space-x-4;
+}
+
+/* Stili per i bottoni */
+.btn {
+    @apply px-4 py-2 rounded-md text-sm font-medium;
+}
+
+.btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700;
+} 

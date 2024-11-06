@@ -2,18 +2,22 @@
 
 // routes/web.php
 
-use Fabio\UltraAdmin\Controllers\LibraryController;
-use Fabio\UltraAdmin\Framework\Router;
-use Fabio\UltraAdmin\Helpers\PathHelper;
-
-return function (Router $router) {
-    $libraryController = new LibraryController();
+use App\Http\Controllers\LibraryController;
+use App\Framework\Router;
+use App\Helpers\PathHelper;
+use App\Http\Controllers\Home;
+use App\Config\LoggerConfig;
+    
+return function (Router $router)  {
 
     $log = LoggerConfig::getLogger();
     $log->info('dentro web.php');
 
+    $home = new Home();
+    $libraryController = new LibraryController();
+
     // Definiamo le route per LibraryController
-    $router->addRoute('GET', '/', [$libraryController, 'home']);
+    $router->addRoute('GET', '/', [$home, 'home']);
     $router->addRoute('GET', '/libraries', [$libraryController, 'index']);
     $router->addRoute('GET', '/libraries/create', [$libraryController, 'create']);
     $router->addRoute('POST', '/libraries/store', [$libraryController, 'store']);

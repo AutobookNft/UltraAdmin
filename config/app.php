@@ -2,11 +2,10 @@
 
 return [
     'providers' => [
-        Fabio\UltraAdmin\Providers\UltraAdminServiceProvider::class,
-        Fabio\UltraAdmin\Providers\RouteServiceProvider::class,
-        Fabio\UltraAdmin\Providers\UConfigServiceProvider::class,
-        Fabio\UltraAdmin\Providers\UltraAdminServiceProvider::class,
-
+        // App\Providers\UltraAdminServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        App\Providers\UConfigServiceProvider::class,
+        App\Providers\TranslationServiceProvider::class,
 
 
         // Aggiungi qui altri providers se necessario

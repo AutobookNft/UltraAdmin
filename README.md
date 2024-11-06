@@ -72,3 +72,69 @@ Attraverso la dashboard, è possibile:
 - Nuova homepage con navbar integrata per una navigazione più intuitiva.
 - Miglioramento della modularità con rotte gestite dinamicamente tramite il `RouteServiceProvider`.
 
+## Descrizione dei Componenti Principali
+
+### Core
+Contiene i componenti fondamentali del framework. Questi componenti formano le "fondamenta" del sistema e sono utilizzati da tutti gli altri moduli.
+
+- **Kernel**: Gestisce il ciclo di vita dell'applicazione
+- **Container**: Implementa il pattern Dependency Injection
+- **ServiceProvider**: Classe base per la registrazione dei servizi
+- **Bootstrap**: Gestisce l'avvio dell'applicazione
+
+### Framework
+Contiene i componenti di livello superiore che si basano sul Core. Questi moduli forniscono funzionalità specifiche come routing, database, ecc.
+
+- **Database**: Gestione delle connessioni e delle query al database
+- **Routing**: Gestione delle rotte dell'applicazione
+- **Http**: Gestione delle richieste e risposte HTTP
+
+### Providers
+Contiene i service provider specifici dell'applicazione. Questi provider utilizzano i componenti Core e Framework per registrare e configurare i servizi dell'applicazione.
+
+## Convenzioni di Codice
+
+- I namespace seguono la struttura delle cartelle (es: `App\Core`, `App\Framework`)
+- Ogni classe ha una singola responsabilità
+- I nomi delle classi utilizzano il PascalCase
+- I metodi utilizzano il camelCase
+- Le proprietà private/protected iniziano con underscore (es: `_container`)
+
+## Sicurezza
+
+Il framework implementa diverse misure di sicurezza:
+- Protezione contro XSS
+- Protezione contro CSRF
+- Sanitizzazione degli input
+- Prepared statements per le query SQL
+
+## Contribuire
+
+Questo è un progetto didattico personale, ma suggerimenti e feedback sono sempre benvenuti.
+
+## Note di Sviluppo
+
+Questo framework è stato creato per scopi didattici e non è inteso per uso in produzione. È un esercizio per comprendere meglio i meccanismi interni di un framework PHP moderno.
+
+
+app/
+├── Core/ # Componenti fondamentali del framework
+│ ├── Kernel.php # Gestisce il bootstrap dell'applicazione
+│ ├── Container.php # Implementazione del container IoC
+│ ├── ServiceProvider.php # Classe base per i service provider
+│ └── Bootstrap/ # Componenti di inizializzazione
+│ └── Application.php
+│
+├── Framework/ # Componenti di livello superiore
+│ ├── Database/ # Gestione database
+│ │ ├── Connect.php
+│ │ └── DatabaseConnection.php
+│ ├── Routing/ # Sistema di routing
+│ │ └── Router.php
+│ └── Http/ # Gestione richieste HTTP
+│ └─ Request.php
+│
+├── Providers/ # Service provider dell'applicazione
+│ ├── RouteServiceProvider.php
+│ └── UltraAdminServiceProvider.php
+

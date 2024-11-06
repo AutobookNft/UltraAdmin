@@ -1,8 +1,8 @@
 <?php
 
-use Fabio\UltraAdmin\Helpers\PathHelper;
-use Fabio\UltraAdmin\Utils\EnvLoader;
-use Fabio\UltraSecureUpload\Logging\CustomizeFormatter;
+use App\Helpers\PathHelper;
+use App\Utils\EnvLoader;
+use App\Logging\CustomizeFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
 

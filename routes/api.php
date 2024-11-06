@@ -1,14 +1,15 @@
-<?php
+   <?php
 
     // routes/web.php
 
     // Definiamo tutte le route qui per tenere il codice organizzato
 
-    use Fabio\UltraAdmin\Controllers\LibraryController;
-    use Fabio\UltraAdmin\Framework\Router;
-    use Fabio\UltraAdmin\Helpers\PathHelper;
-
-    $router = new Router();
+    use App\Http\Controllers\LibraryController;
+    use App\Framework\Router;
+    
+    use App\Config\LoggerConfig;
+    $router = Router::getInstance();
+    $router->dispatch();
 
     $log = LoggerConfig::getLogger();
     $log->info('dentro api.php');

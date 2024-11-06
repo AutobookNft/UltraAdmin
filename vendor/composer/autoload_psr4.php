@@ -10,4 +10,5 @@ return array(
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Fabio\\UltraAdmin\\' => array($baseDir . '/src'),
     'Config\\' => array($baseDir . '/config'),
+    'App\\' => array($baseDir . '/app'),
 );

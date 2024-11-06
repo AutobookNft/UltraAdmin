@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Config;
+
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Level;
