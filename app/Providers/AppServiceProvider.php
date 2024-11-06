@@ -79,17 +79,11 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        try {
-            foreach ($this->loadedProviders as $provider) {
-                if ($provider->getName() !== 'RouteServiceProvider') {
-                    $provider->boot();
-                    $this->log->info('Booting provider: ' . $provider->getName());
-                }
-            }
-        } catch (Exception $e) {
-            $this->log->error("Failed to boot providers: " . $e->getMessage());
-            throw $e;
-        }
+        $this->log->info('Kernel boot started');
+    
+        // ... per usi futuri
+        
+        $this->log->info('Kernel boot completed');
     }
 
     public function getName(): string

@@ -17,14 +17,12 @@ $log->info('Applicazione avviata con successo');
 
 // // Inizializza il container
 $container = new Container();
-$log->info('Container');
+
 
 $kernel = new Kernel($container);
-$log->info('Kernel');
+
 $kernel->boot();
-$log->info('Kernel booted');
+
 $kernel->dispatch();
-$log->info('Kernel dispatched');
+
 $container->getSingletons();
-$log->info('Singletons');
-$log->info('Fine applicazione');

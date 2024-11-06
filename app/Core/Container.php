@@ -17,6 +17,14 @@ class Container
     public array $viewPaths = [];
     public array $migrationPaths = [];
     
+    public function __construct()
+    {
+        // Inizializzazione base del container
+        $this->instances = [];
+        $this->bindings = [];
+        $this->aliases = [];
+        $this->contextualBindings = [];
+    }
 
     // Metodo per registrare i servizi con supporto per contesti
     public function bind(string $abstract, callable|string $concrete, bool $singleton = false, array $context = []): void

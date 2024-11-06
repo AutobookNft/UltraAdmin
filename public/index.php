@@ -1,18 +1,19 @@
 <?php
 
-define('ULTRA_START', microtime(true));
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use App\Core\Kernel;
+use App\Core\Container;
+use App\Helpers\PathHelper;
+use App\Config\LoggerConfig;
+
+
+$log = LoggerConfig::getLogger();
+$log->info('Applicazione avviata con successo');
 
 /*
 |--------------------------------------------------------------------------
-| Register The Auto Loader
-|--------------------------------------------------------------------------
-*/
-
-require __DIR__.'/../vendor/autoload.php';
-
-/*
-|--------------------------------------------------------------------------
-| Turn On The Lights
+| Bootstrap The Application
 |--------------------------------------------------------------------------
 */
 
@@ -24,12 +25,9 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 |--------------------------------------------------------------------------
 */
 
-$kernel = $app->make(App\Core\Kernel::class);
+$kernel = new Kernel($app);
+$kernel->boot();
+$kernel->dispatch();
 
-$response = $kernel->handle(
-    $request = App\Core\Request::capture()
-);
-
-$response->send();
-
-$kernel->terminate($request, $response); 
+// Debug info
+$app->getSingletons(); 

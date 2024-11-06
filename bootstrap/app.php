@@ -12,24 +12,13 @@ $app = new App\Framework\Application(
 
 /*
 |--------------------------------------------------------------------------
-| Bind Important Interfaces
+| Register Core Service Providers
 |--------------------------------------------------------------------------
 */
 
-// Bind the base path
-$app->singleton('path', function ($app) {
-    return dirname(__DIR__) . '/app';
-});
-
-// Bind the config path
-$app->singleton('path.config', function ($app) {
-    return dirname(__DIR__) . '/config';
-});
-
-// Bind the storage path
-$app->singleton('path.storage', function ($app) {
-    return dirname(__DIR__) . '/storage';
-});
+// Registriamo AppServiceProvider come primo provider
+$appProvider = new App\Providers\AppServiceProvider($app);
+$appProvider->register();
 
 /*
 |--------------------------------------------------------------------------
