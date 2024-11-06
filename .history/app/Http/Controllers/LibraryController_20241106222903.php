@@ -102,18 +102,17 @@ class LibraryController
             ]);
         }
     }
-    
-    public function update()
-    {
-        echo "Aggiorna una libreria esistente.";
-        // Qui potresti aggiornare i dati
-    }
+        public function update()
+        {
+            echo "Aggiorna una libreria esistente.";
+            // Qui potresti aggiornare i dati
+        }
 
-    public function delete()
-    {
-        echo "Elimina una libreria.";
-        // Qui potresti eliminare una libreria
-    }
+        public function delete()
+        {
+            echo "Elimina una libreria.";
+            // Qui potresti eliminare una libreria
+        }
 
 }
 

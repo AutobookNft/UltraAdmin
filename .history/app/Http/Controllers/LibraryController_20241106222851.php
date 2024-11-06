@@ -79,7 +79,7 @@ class LibraryController
         // Qui potresti salvare una nuova libreria
     }
 
-    public function edit($id)
+    public function edit($id):
     {
         $this->log->info('Dentro edit', ['id' => $id]);
         
@@ -102,8 +102,7 @@ class LibraryController
             ]);
         }
     }
-    
-    public function update()
+        public function update()
     {
         echo "Aggiorna una libreria esistente.";
         // Qui potresti aggiornare i dati

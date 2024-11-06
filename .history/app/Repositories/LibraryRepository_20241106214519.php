@@ -44,7 +44,5 @@ class LibraryRepository
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
-            throw new Exception("Errore nel recupero della libreria: " . $e->getMessage());
-        }
     }
 } 

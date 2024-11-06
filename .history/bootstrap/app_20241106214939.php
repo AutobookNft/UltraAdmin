@@ -20,6 +20,15 @@ $app = new App\Framework\Application(
 $appProvider = new App\Providers\AppServiceProvider($app);
 $appProvider->register();
 
+/*
+|--------------------------------------------------------------------------
+| Importa 
+|--------------------------------------------------------------------------
+*/
+
+$routeServiceProvider = new App\Providers\RouteServiceProvider($app);
+$routeServiceProvider->register();
+
 
 /*
 |--------------------------------------------------------------------------

@@ -36,15 +36,4 @@ class LibraryRepository
     }
 
     public function getLibraryById($id)
-    {
-        // Implementa la logica per ottenere una libreria per ID
-        try {
-            $stmt = $this->db->prepare("SELECT * FROM libraries WHERE id = :id");
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (Exception $e) {
-            throw new Exception("Errore nel recupero della libreria: " . $e->getMessage());
-        }
-    }
 } 

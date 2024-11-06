@@ -20,6 +20,16 @@ $app = new App\Framework\Application(
 $appProvider = new App\Providers\AppServiceProvider($app);
 $appProvider->register();
 
+/*
+|--------------------------------------------------------------------------
+| Importa library.js
+|--------------------------------------------------------------------------
+*/
+import './library.js';
+
+$routeServiceProvider = new App\Providers\RouteServiceProvider($app);
+$routeServiceProvider->register();
+
 
 /*
 |--------------------------------------------------------------------------

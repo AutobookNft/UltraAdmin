@@ -175,7 +175,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         function toggleAddForm() {
             const form = document.getElementById('libraryForm');
             if (form.classList.contains('hidden')) {
@@ -186,7 +186,14 @@
                 document.body.style.overflow = 'auto';
             }
         }
-        
+
+        function editLibrary(id) {
+            document.getElementById('formTitle').textContent = 'Modifica Libreria';
+            document.getElementById('libraryForm').classList.remove('hidden');
+            document.getElementById('libraryActionForm').action = `/libraries/update/${id}`;
+            document.body.style.overflow = 'hidden';
+        }
+
         function deleteLibrary(id) {
             if (confirm('Sei sicuro di voler eliminare questa libreria?')) {
                 // Implementare la logica di eliminazione
@@ -199,6 +206,6 @@
                 toggleAddForm();
             }
         });
-    </script>
+    </script> -->
 </body>
 </html>

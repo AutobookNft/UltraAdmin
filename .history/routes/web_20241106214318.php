@@ -21,7 +21,7 @@ return function (Router $router)  {
     $router->addRoute('GET', '/libraries', [$libraryController, 'index']);
     $router->addRoute('GET', '/libraries/create', [$libraryController, 'create']);
     $router->addRoute('POST', '/libraries/store', [$libraryController, 'store']);
-    $router->addRoute('GET', '/libraries/edit/{id}', [$libraryController, 'edit']);
+    $router->addRoute('GET', '/libraries/edit/{', [$libraryController, 'edit']);
     $router->addRoute('POST', '/libraries/update', [$libraryController, 'update']);
     $router->addRoute('POST', '/libraries/delete', [$libraryController, 'delete']);
 

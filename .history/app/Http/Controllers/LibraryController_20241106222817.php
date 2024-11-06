@@ -102,8 +102,7 @@ class LibraryController
             ]);
         }
     }
-    
-    public function update()
+        public function update()
     {
         echo "Aggiorna una libreria esistente.";
         // Qui potresti aggiornare i dati

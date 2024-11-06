@@ -21,6 +21,9 @@ $appProvider = new App\Providers\AppServiceProvider($app);
 $appProvider->register();
 
 
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

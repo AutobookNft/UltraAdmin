@@ -49,30 +49,13 @@ class Router
             'available_routes' => array_keys($this->routes[$method] ?? [])
         ]);
 
-        // Cerca una route che corrisponda
-        foreach ($this->routes[$method] ?? [] as $route => $handler) {
-            // Converti il pattern della route in una regex
-            $pattern = preg_replace('/\{([^}]+)\}/', '([^/]+)', $route);
-            $pattern = '@^' . $pattern . '$@D';
-            
-            // Verifica se il path corrisponde al pattern
-            if (preg_match($pattern, $path, $matches)) {
-                array_shift($matches); // Rimuove il match completo
-                
-                $log->info('Route matched', [
-                    'pattern' => $pattern,
-                    'matches' => $matches
-                ]);
-                
-                // Chiama l'handler con i parametri estratti
-                call_user_func_array($handler, $matches);
-                return;
-            }
+        if (isset($this->routes[$method][$path])) {
+            call_user_func($this->routes[$method][$path]);
+        } else {
+            // Gestione di una route non trovata
+            http_response_code(404);
+            echo "404 - Pagina non trovata.";
         }
-
-        // Se non trova corrispondenze
-        http_response_code(404);
-        echo "404 - Pagina non trovata.";
     }
     
     /**

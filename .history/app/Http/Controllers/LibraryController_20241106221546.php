@@ -81,28 +81,16 @@ class LibraryController
 
     public function edit($id)
     {
-        $this->log->info('Dentro edit', ['id' => $id]);
         
         try {
             $library = $this->libraryRepository->getLibraryById($id);
-            
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => true,
-                'data' => $library
-            ]);
-            
         } catch (Exception $e) {
             $this->log->error('Errore nel recupero della libreria', ['error' => $e->getMessage()]);
-            http_response_code(500);
-            header('Content-Type: application/json');
-            echo json_encode([
-                'success' => false,
-                'error' => $e->getMessage()
-            ]);
         }
+        
+        $this->render('edit', ['library' => $library]);
     }
-    
+
     public function update()
     {
         echo "Aggiorna una libreria esistente.";
