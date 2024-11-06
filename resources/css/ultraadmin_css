@@ -15,6 +15,7 @@ body {
     margin: 0;
     padding: 20px;
     color: #333;
+    padding-top: 0;
 }
 
 h1, h2 {
@@ -34,6 +35,10 @@ h1, h2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin: 0 auto 30px auto;
 }
 
 .navbar-brand {
@@ -106,12 +111,13 @@ h1, h2 {
 /* Container per library_handler */
 .container {
     width: 100%;
-    max-width: 700px;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
     background-color: #ffffff;
-    padding: 10px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin: 40px auto;
 }
 
 /* Container per library_handler */
@@ -170,14 +176,48 @@ button:hover {
 
 /* Tabella per library_handler */
 .table-container {
-    width: 80%;
-    max-width: 800px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin: 40px auto;
+    width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    box-sizing: border-box;
+    border-radius: 4px;
 }
+
+.table-modern {
+    width: 100%;
+    margin: 0;
+    min-width: 800px;
+    max-width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.table-modern th,
+.table-modern td {
+    padding: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Definizione delle larghezze delle colonne */
+.table-modern th:nth-child(1),
+.table-modern td:nth-child(1) { width: 15%; }
+
+.table-modern th:nth-child(2),
+.table-modern td:nth-child(2) { width: 20%; }
+
+.table-modern th:nth-child(3),
+.table-modern td:nth-child(3) { width: 10%; }
+
+.table-modern th:nth-child(4),
+.table-modern td:nth-child(4) { width: 8%; }
+
+.table-modern th:nth-child(5),
+.table-modern td:nth-child(5) { width: 17%; }
+
+.table-modern th:nth-child(6),
+.table-modern td:nth-child(6) { width: 30%; }
 
 table {
     width: 100%;
@@ -253,5 +293,339 @@ button.action:hover {
     .cta-button {
         padding: 12px 25px;
         font-size: 16px;
+    }
+}
+
+/* Aggiungi questi nuovi stili al file esistente */
+
+/* Card Style */
+.card {
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.form-control {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    outline: none;
+}
+
+/* Button Styles Update */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+/* Table Styles Update */
+.table-modern {
+    width: 100%;
+    margin: 0;
+    min-width: 800px;
+    max-width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 25px 0;
+}
+
+.table-modern th {
+    background: #f8fafc;
+    color: #2c3e50;
+    font-weight: 600;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.table-modern td {
+    padding: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.table-modern tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin: 24px 0;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Action Buttons Update */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 220px;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+/* Status Badge */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.badge-success {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.badge-warning {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.btn-icon {
+    padding: 8px;
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Ridistribuzione delle larghezze delle colonne */
+.table-modern th:nth-child(1), 
+.table-modern td:nth-child(1) { width: 12%; }  /* Nome */
+
+.table-modern th:nth-child(2), 
+.table-modern td:nth-child(2) { width: 20%; }  /* Descrizione */
+
+.table-modern th:nth-child(3), 
+.table-modern td:nth-child(3) { width: 8%; }   /* Versione */
+
+.table-modern th:nth-child(4), 
+.table-modern td:nth-child(4) { width: 8%; }   /* Stato */
+
+.table-modern th:nth-child(5), 
+.table-modern td:nth-child(5) { width: 12%; }  /* Data Creazione */
+
+.table-modern th:nth-child(6), 
+.table-modern td:nth-child(6) { width: 20%; }  /* Modifica */
+
+.table-modern th:nth-child(7), 
+.table-modern td:nth-child(7) { width: 20%; }  /* Elimina */
+
+.btn {
+    padding: 8px 16px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px;
+        margin: 0;
+        overflow: hidden;  /* Previene overflow */
+    }
+
+    .table-container {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .table-modern thead {
+        display: none;
+    }
+
+    .table-modern tbody {
+        display: grid;
+        gap: 16px;
+        width: 100%;
+        padding: 0;
+    }
+
+    .table-modern tr {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        padding: 16px;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Info item style */
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .info-item:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        font-weight: 500;
+        color: #64748b;
+    }
+
+    .info-value {
+        color: #334155;
+    }
+
+    /* Badge */
+    .badge {
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 13px;
+    }
+
+    .badge-success {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    /* Actions */
+    .mobile-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid #edf2f7;
+    }
+
+    .btn {
+        flex: 1;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+}
+
+/* Per schermi molto piccoli */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .table-modern tr {
+        padding: 12px;
     }
 }

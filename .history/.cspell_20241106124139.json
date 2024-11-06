@@ -1,0 +1,22 @@
+{
+    "version": "0.2",
+    "language": "en,it",
+    "dictionaryDefinitions": [
+        {
+            "name": "it-it",
+            "path": "./node_modules/cspell-dict-it-it/it_IT.trie.gz"
+        }
+    ],
+    "dictionaries": [
+        "it-it"
+    ],
+    "words": [
+        "principalmente",
+        "sviluppo"
+    ],
+    "flagWords": [],
+    "ignorePaths": [
+        "node_modules/**",
+        "vendor/**"
+    ]
+}

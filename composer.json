@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
             "Fabio\\UltraAdmin\\": "src/",
-            "Config\\": "config/"
+            "Config\\": "config/",
+            "App\\": "app/"
         },
         "files": [
             "config/LoggerConfig.php"  

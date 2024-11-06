@@ -1,0 +1,6 @@
+[2024-11-06T10:16:48.948852+00:00] ultra_admin_log.INFO: Applicazione avviata con successo [] []
+[2024-11-06T10:16:48.949245+00:00] ultra_admin_log.INFO: Container [] []
+[2024-11-06T10:16:48.949454+00:00] ultra_admin_log.INFO: Kernel [] []
+[2024-11-06T10:16:48.949715+00:00] ultra_admin_log.INFO: Loading providers from: /home/fabio/libraries/UltraAdmin/config/app.php [] []
+[2024-11-06T10:16:48.949923+00:00] ultra_admin_log.INFO: Provider found: App\Providers\RouteServiceProvider [] []
+[2024-11-06T10:16:48.950129+00:00] ultra_admin_log.INFO: Provider found: App\Providers\UConfigServiceProvider [] []
