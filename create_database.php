@@ -5,7 +5,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // Dati di configurazione del database
 
-use Fabio\UltraAdmin\Framework\Connect;
+use App\Framework\Database\Connect;
+use App\Config\LoggerConfig;
 
 $log = LoggerConfig::getLogger();
 
@@ -40,15 +41,26 @@ try {
 
     // Creazione della tabella 'libraries'
     $tableSql = "
-        CREATE TABLE IF NOT EXISTS libraries (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            version VARCHAR(50) NOT NULL,
-            status VARCHAR(50) NOT NULL,
-            description TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        );
-    ";
+    CREATE TABLE IF NOT EXISTS libraries (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        version VARCHAR(50) NOT NULL,
+        status VARCHAR(50) NOT NULL DEFAULT 'active',
+        description TEXT,
+        author VARCHAR(100),
+        repository_url VARCHAR(255),
+        documentation_url VARCHAR(255),
+        license VARCHAR(50),
+        dependencies TEXT,
+        tags VARCHAR(255),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        deleted_at TIMESTAMP NULL DEFAULT NULL,
+        INDEX idx_status (status),
+        INDEX idx_created (created_at),
+        FULLTEXT INDEX idx_search (name, description)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+";
     $pdo->exec($tableSql);
     echo "Tabella 'libraries' creata con successo.<br>";
 

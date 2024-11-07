@@ -1,4 +1,5 @@
 <?php
+// Questo è codice php
 
 namespace App\Http\Controllers;
 
@@ -27,7 +28,7 @@ class LibraryController
         
         // Percorso alla cartella delle viste
         $viewPath = PathHelper::routesView($view);
-        $this->log->info('viewPath', ['viewPath'=>$viewPath]);
+        // $this->log->info('viewPath', ['viewPath'=>$viewPath]);
 
         if (file_exists($viewPath)) {
             require $viewPath;
@@ -51,9 +52,9 @@ class LibraryController
 
             $libraries = $this->libraryRepository->getAllLibraries();
             
-            $this->log->info('Recupero librerie completato', ['count' => count($libraries)]);
+            // $this->log->info('Recupero librerie completato', ['count' => count($libraries)]);
             
-            $this->render('library_handler.html', [
+            $this->render('library_handler.php', [
                 'libraries' => $libraries,
                 'error' => null
             ]);
@@ -61,7 +62,7 @@ class LibraryController
         } catch (Exception $e) {
             $this->log->error('Errore nel recupero delle librerie', ['error' => $e->getMessage()]);
             
-            $this->render('library_handler.html', [
+            $this->render('library_handler.php', [
                 'libraries' => [],
                 'error' => $e->getMessage()
             ]);
@@ -75,8 +76,7 @@ class LibraryController
 
     public function store()
     {
-        echo "Salva una nuova libreria.";
-        // Qui potresti salvare una nuova libreria
+      
     }
 
     public function edit($id)
@@ -87,6 +87,8 @@ class LibraryController
             $library = $this->libraryRepository->getLibraryById($id);
             
             header('Content-Type: application/json');
+            $this->log->info('Recupero libreria completato', ['data' => $library]);
+
             echo json_encode([
                 'success' => true,
                 'data' => $library
@@ -103,10 +105,38 @@ class LibraryController
         }
     }
     
-    public function update()
+    public function update($id)
     {
-        echo "Aggiorna una libreria esistente.";
-        // Qui potresti aggiornare i dati
+        try {
+            // Log per debug
+            $this->log->info('Update chiamato con:', [
+                'id' => $id,
+                'post_data' => $_POST
+            ]);
+
+            $result = $this->libraryRepository->update($id, $_POST);
+            
+            // Assicurati che gli headers siano impostati correttamente
+            header('Content-Type: application/json');
+            
+            echo json_encode([
+                'success' => true,
+                'message' => 'Libreria aggiornata con successo',
+                'data' => $result
+            ]);
+            
+        } catch (Exception $e) {
+            $this->log->error('Errore in update:', ['error' => $e->getMessage()]);
+            
+            header('Content-Type: application/json');
+            http_response_code(500);
+            
+            echo json_encode([
+                'success' => false,
+                'error' => $e->getMessage()
+            ]);
+        }
+        exit(); // Importante: ferma l'esecuzione dopo aver inviato la risposta
     }
 
     public function delete()

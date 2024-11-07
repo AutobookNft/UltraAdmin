@@ -29,7 +29,7 @@ class Kernel
         
         // ... per usi futuri
         
-        $this->log->info('Kernel boot completed');
+        // $this->log->info('Kernel boot completed');
     }
 
     /**
@@ -39,7 +39,7 @@ class Kernel
     {
         $this->log->info('Kernel dispatch started');
         
-        $this->log->info('Kernel dispatch completed');
+        // $this->log->info('Kernel dispatch completed');
     }
 }
 

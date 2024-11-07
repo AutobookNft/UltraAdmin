@@ -21,7 +21,7 @@ abstract class ServiceProvider
      */
     public function boot()
     {
-        $config = require __DIR__ . '/../../config/app.php';
+        $config = require PathHelper::configPath('app.php');
 
         // Crea un'istanza di Router da usare con RouteServiceProvider
         $router = new Router();
