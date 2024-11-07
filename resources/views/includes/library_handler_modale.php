@@ -3,10 +3,11 @@
 <div id="libraryForm" class="fixed inset-0 hidden w-full h-full overflow-y-auto bg-gray-600 bg-opacity-50" style="z-index: 50;">
     <div class="relative w-full max-w-md p-5 mx-auto top-20">
         <div class="bg-white shadow-2xl rounded-xl">
-            <div class="flex items-center justify-between p-6 border-b border-gray-100">
+            <div class="flex items-center justify-between p-6 border-b border-red-500">
                 <h2 id="formTitle" class="text-2xl font-bold text-gray-800"></h2>
-                <button onclick="toggleAddForm('create')" class="text-gray-400 transition-colors hover:text-gray-600">
-                    <i class="text-xl fas fa-times"></i>
+                <!-- Bottone per chiudere il form a forma di X -->
+                <button onclick="toggleAddForm('close')" class="text-gray-400 transition-colors hover:text-gray-600">
+                <i class="text-xl fas fa-times"></i>
                 </button>
             </div>
 

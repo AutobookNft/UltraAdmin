@@ -1,0 +1,79 @@
+# .cursorrules
+
+# Descrizione Generale del Progetto
+Gestione delle Tabelle e Interfaccia Grafica in UltraAdmin Questa sezione è parte del progetto UltraAdmin, che ha l'obiettivo di creare un sistema completo per la gestione di librerie e configurazioni in un ambiente PHP leggero. UltraAdmin è strutturato per fornire un'interfaccia user-friendly e strumenti avanzati per la gestione dei dati, configurazioni personalizzabili e sicurezza avanzata. Di seguito, sono descritte le specifiche per la gestione delle tabelle, una delle componenti fondamentali di UltraAdmin.
+
+# Obiettivo Generale per la Gestione delle Tabelle
+Il sistema di gestione delle tabelle permette di creare, modificare e aggiornare tabelle nel database tramite un’interfaccia grafica. Gli utenti possono aggiungere campi, selezionare tipi di dati, impostare vincoli come `NOT NULL`, `UNIQUE`, e `DEFAULT`, e definire relazioni con altre tabelle (`One-to-One`, `One-to-Many`, `Many-to-Many`). UltraAdmin dovrebbe rilevare automaticamente se una tabella esiste e sincronizzare la struttura con lo schema definito, aggiungendo i campi mancanti e rimuovendo quelli non presenti nello schema.
+
+# Logica di Base per la Gestione delle Tabelle
+Implementare le seguenti funzioni principali per gestire la struttura delle tabelle e le relazioni con uno schema predefinito.
+
+1. **tableExists**: Verifica l'esistenza di una tabella nel database utilizzando PDO.
+   - Input: `pdo`, `nome tabella`
+   - Output: `true` se la tabella esiste, `false` altrimenti.
+
+2. **getTableSchema**: Ottiene la struttura della tabella esistente utilizzando il comando SQL `DESCRIBE`. Questa funzione restituisce un array con i dettagli dei campi della tabella (nome campo, tipo di dato, nullable, ecc.).
+   - Input: `pdo`, `nome tabella`
+   - Output: Array della struttura della tabella.
+
+3. **createTable**: Crea una nuova tabella nel database in base a uno schema definito in un array. Ogni campo nell'array schema specifica `nome campo`, `tipo di dato`, `nullable`, `default`, e se è `primary`. La funzione costruisce e esegue l’SQL per creare la tabella e applicare i vincoli richiesti.
+   - Input: `pdo`, `nome tabella`, `schema`
+   - Output: Tabella creata nel database.
+
+4. **syncTableSchema**: Sincronizza la struttura della tabella con uno schema predefinito. Se la tabella non esiste, la funzione chiama `createTable`. Se ci sono differenze (campi da aggiungere o da rimuovere), la funzione esegue i comandi SQL necessari per allineare la struttura della tabella con lo schema.
+   - Input: `pdo`, `nome tabella`, `schema predefinito`
+   - Output: Sincronizzazione della tabella esistente con lo schema predefinito.
+
+5. **addFieldToTable**: Aggiunge un nuovo campo a una tabella esistente. Include parametri per `nome campo`, `tipo di dato`, `nullable`, `default`, e `primary`.
+   - Input: `pdo`, `nome tabella`, `campo`
+   - Output: Campo aggiunto alla tabella.
+
+6. **removeFieldsFromTable**: Rimuove i campi in eccesso che sono presenti nel database ma non nello schema predefinito, usando comandi `ALTER TABLE DROP COLUMN`.
+   - Input: `pdo`, `nome tabella`, `campi da rimuovere`
+   - Output: Campi rimossi dalla tabella.
+
+7. **createRelationships**: Aggiunge le relazioni di chiave esterna definite nello schema. Ogni relazione specifica il `campo`, `tabella relazionata`, tipo di relazione, e `on delete` come `CASCADE`. Genera e applica l’SQL per aggiungere le chiavi esterne.
+   - Input: `pdo`, `nome tabella`, `relazioni`
+   - Output: Relazioni create nella tabella.
+
+8. **generateSQLPreview**: Mostra in tempo reale l’anteprima SQL delle modifiche previste per la creazione o aggiornamento della tabella, permettendo di vedere il codice SQL generato senza eseguirlo.
+   - Input: `schema`, `modifiche recenti`
+   - Output: Stringa SQL che riflette le modifiche.
+
+# Interfaccia Grafica per la Gestione delle Tabelle
+L’interfaccia grafica deve permettere all’utente di creare e modificare tabelle in modo interattivo, con le seguenti sezioni e componenti.
+
+1. **Form per Definire un Nuovo Campo**
+   - Campi:
+     - **Nome del Campo**: Input di testo.
+     - **Tipo di Dato**: Select per i tipi di dati principali (`INT`, `VARCHAR`, `TEXT`, `TIMESTAMP`, ecc.).
+     - **Dimensione**: Input numerico opzionale per i tipi che richiedono una dimensione (`VARCHAR`).
+     - **Vincoli**: Checkbox per `NULL`, `UNIQUE`, `DEFAULT`, `PRIMARY KEY`.
+   - Funzione: Aggiunge un nuovo campo alla tabella con i dettagli configurati.
+
+2. **Lista dei Campi della Tabella**
+   - Visualizza i campi esistenti con le seguenti colonne:
+     - **Nome del Campo**
+     - **Tipo di Dato**
+     - **Opzioni**: vincoli applicati come `NOT NULL`, `UNIQUE`
+     - Azioni: **Modifica** e **Elimina**.
+   - Funzione: Permette di visualizzare e modificare i campi in tempo reale.
+
+3. **Gestione delle Relazioni tra Tabelle**
+   - Opzioni:
+     - **Tipo di Relazione**: `One-to-One`, `One-to-Many`, `Many-to-Many`.
+     - **Tabella Relazionata**: Select delle tabelle disponibili per impostare la relazione.
+     - **Campo di Collegamento**: Campo per specificare la colonna esterna.
+     - **On Delete**: Select per impostare l’azione in caso di eliminazione (`CASCADE`, `SET NULL`).
+   - Funzione: Definisce e visualizza le relazioni della tabella con altre tabelle.
+
+4. **Anteprima SQL Dinamica**
+   - Mostra in tempo reale l’SQL generato per la creazione o aggiornamento della tabella. Include comandi `CREATE TABLE` e `ALTER TABLE` per i campi e le relazioni configurate dall’utente.
+   - Funzione: Fornisce una preview completa dell’SQL da eseguire.
+
+5. **Funzione di Salvataggio della Tabella**
+   - Bottone **Salva Tabella**: Applica tutte le modifiche al database, sincronizzando la struttura della tabella con lo schema definito.
+   - Bottone **Annulla**: Ritorna alla vista iniziale senza applicare le modifiche.
+
+
