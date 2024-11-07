@@ -3,8 +3,6 @@
 
 namespace App\Http\Controllers;
 
-
-
 use App\Repositories\LibraryRepository;
 use Exception;
 use App\Config\LoggerConfig;
@@ -75,8 +73,17 @@ class LibraryController
     }
 
     public function store()
-    {
-      
+    {   
+        try {
+            $result = $this->libraryRepository->create($_POST);
+            echo json_encode([
+                'success' => true,
+                'message' => 'Libreria aggiunta con successo',
+                'data' => $result
+            ]);
+        } catch (Exception $e) {
+            $this->log->error('Errore nell\'aggiunta della libreria', ['error' => $e->getMessage()]);
+        }
     }
 
     public function edit($id)

@@ -3,6 +3,7 @@ console.log('library.js caricato correttamente')
 window.editLibrary = editLibrary;
 window.toggleAddForm = toggleAddForm;
 window.deleteLibrary = deleteLibrary;
+window.action = '';
 
 
 async function editLibrary(id) {
@@ -51,14 +52,21 @@ async function editLibrary(id) {
 
 function toggleAddForm($action) {
     const form = document.getElementById('libraryForm');
+    const formFields = document.getElementById('libraryActionForm');
+
     if (form.classList.contains('hidden')) {
         form.classList.remove('hidden');
         if ($action === 'create') {
             console.log('Aggiungi Libreria');
             document.getElementById('formTitle').textContent = 'Aggiungi Libreria';
+            window.action = 'create';
+            
+            // Clear all form fields
+            formFields.reset();
         } else {
             console.log('Modifica Libreria');
             document.getElementById('formTitle').textContent = 'Modifica Libreria';
+            window.action = 'update';
         }
         document.body.style.overflow = 'hidden';
     } else {
@@ -94,16 +102,32 @@ document.addEventListener('DOMContentLoaded', function() {
             // Log per debug
             console.log('Library ID:', id);
             console.log('Form Data:', Object.fromEntries(formData));
+            console.log('Action:', window.action);
 
             try {
-                const response = await fetch(`/libraries/update/${id}`, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: formData
-                });
+                let response; // Dichiara response fuori dal blocco if/else
+        
+                if (window.action === 'update') {
+                    console.log('Modifica Libreria');
+                    response = await fetch(`/libraries/update/${id}`, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: formData
+                    });
+                } else {
+                    console.log('Aggiungi Libreria');
+                    response = await fetch(`/libraries/store`, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: formData
+                    });
+                }
 
                 // Log per debug
                 console.log('Response status:', response.status);
@@ -120,31 +144,65 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (result.success) {
                     // Aggiorna i dati nella tabella
-                    const row = document.querySelector(`tr[data-library-id="${id}"]`);
-                    if (!row) {
-                        console.error('Row not found for library ID:', id);
-                        return;
+                    if (window.action === 'update') {
+                        // Aggiorna i dati nella tabella esistente
+                        const row = document.querySelector(`tr[data-library-id="${id}"]`);
+                        if (!row) {
+                            console.error('Row not found for library ID:', id);
+                            return;
+                        }
+                
+                        // Aggiorna solo se trova gli elementi
+                        const nameCell = row.querySelector('.library-name');
+                        const versionCell = row.querySelector('.library-version');
+                        const statusCell = row.querySelector('.library-status');
+                        const authorCell = row.querySelector('.library-author');
+                        const tagsCell = row.querySelector('.library-tags');
+                
+                        if (nameCell) nameCell.textContent = formData.get('name');
+                        if (versionCell) versionCell.textContent = formData.get('version');
+                        if (statusCell) statusCell.textContent = formData.get('status');
+                        if (authorCell) authorCell.textContent = formData.get('author');
+                        if (tagsCell) tagsCell.textContent = formData.get('tags');
+                    } else {
+                        // Aggiungi nuova riga alla tabella
+                        const tbody = document.querySelector('table tbody');
+                        const newRow = document.createElement('tr');
+                        newRow.setAttribute('data-library-id', result.data.id);
+                        
+                        newRow.innerHTML = `
+                            <td class="px-6 py-4 whitespace-nowrap library-name">
+                                ${formData.get('name')}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap library-version">
+                                ${formData.get('version')}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap library-status">
+                                ${formData.get('status')}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap library-author">
+                                ${formData.get('author') || '-'}
+                            </td>
+                            <td class="px-6 py-4 library-tags">
+                                ${formData.get('tags') || ''}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                ${ViewHelpers.formatDate(result.data.updated_at)}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button onclick="editLibrary('${result.data.id}')" 
+                                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 transition-colors duration-200 rounded-lg bg-blue-50 hover:bg-blue-100">
+                                    <i class="mr-2 fas fa-edit"></i> Modifica
+                                </button>
+                                <button onclick="deleteLibrary('${result.data.id}')" 
+                                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-red-600 transition-colors duration-200 rounded-lg bg-red-50 hover:bg-red-100">
+                                    <i class="mr-2 fas fa-trash"></i> Elimina
+                                </button>
+                            </td>
+                        `;
+                        
+                        tbody.insertBefore(newRow, tbody.firstChild);
                     }
-
-                    // Aggiorna solo se trova gli elementi
-                    const nameCell = row.querySelector('.library-name');
-                    const versionCell = row.querySelector('.library-version');
-                    const statusCell = row.querySelector('.library-status');
-
-                    console.log('Row found:', row);
-                    console.log('Name cell:', nameCell);
-                    console.log('Version cell:', versionCell);
-                    console.log('Status cell:', statusCell);
-                    console.log('Form data:', {
-                        name: formData.get('name'),
-                        version: formData.get('version'),
-                        status: formData.get('status')
-                    });
-                
-                
-                    if (nameCell) nameCell.textContent = formData.get('name');
-                    if (versionCell) versionCell.textContent = formData.get('version');
-                    if (statusCell) statusCell.textContent = formData.get('status');
                     
                     // Chiudi il modale
                     toggleAddForm();

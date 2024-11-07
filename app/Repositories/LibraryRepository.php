@@ -51,7 +51,7 @@ class LibraryRepository
         }
     }
 
-    public function saveLibrary($data)
+    public function create($data)
     {
         try {
             $query = "INSERT INTO libraries (
