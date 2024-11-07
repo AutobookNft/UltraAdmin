@@ -1,0 +1,75 @@
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+
+// Dati di configurazione del database
+
+use App\Framework\Connect;
+use App\Framework\LoggerConfig;
+
+$log = LoggerConfig::getLogger();
+
+try {
+    
+    $log->info('Applicazione avviata con successo');
+    
+    // Dati di connessione al database
+    $host = Connect::get()['host']; 
+    $database = Connect::get()['dbname'];
+    $username = Connect::get()['username'];
+    $password = Connect::get()['password'];
+
+    $log->info('Dati di Connessione al database', [
+        'host' => $host,
+        'database' => $database,
+        'username' => $username,
+        'password' => $password,
+    ]);
+
+    // Connessione al server MySQL senza specificare un database
+    $pdo = new PDO("mysql:host=$host", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Creare il database se non esiste
+    $sql = "CREATE DATABASE IF NOT EXISTS $database";
+    $pdo->exec($sql);
+    echo "Database $database creato con successo.<br>";
+
+    // Connessione al database appena creato
+    $pdo->exec("USE $database");
+
+    // Creazione della tabella 'libraries'
+    $tableSql = "
+    CREATE TABLE IF NOT EXISTS libraries (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        version VARCHAR(50) NOT NULL,
+        status VARCHAR(50) NOT NULL DEFAULT 'active',
+        description TEXT,
+        author VARCHAR(100),
+        repository_url VARCHAR(255),
+        documentation_url VARCHAR(255),
+        license VARCHAR(50),
+        dependencies TEXT,
+        tags VARCHAR(255),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        deleted_at TIMESTAMP NULL DEFAULT NULL,
+        INDEX idx_status (status),
+        INDEX idx_created (created_at),
+        FULLTEXT INDEX idx_search (name, description)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+";
+    $pdo->exec($tableSql);
+    echo "Tabella 'libraries' creata con successo.<br>";
+
+} catch (PDOException $e) {
+
+    $log->info('Errore nella creazione del database o della tabella', [
+        'error' => $e->getMessage(),
+    ]);
+
+    echo "Errore nella creazione del database o della tabella: " . $e->getMessage();
+}
+
